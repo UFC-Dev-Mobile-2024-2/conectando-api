@@ -113,7 +113,7 @@ Para praticar com APIs mesmo sem um backend real, você pode utilizar ferramenta
 
 - **[Mocky](https://designer.mocky.io/)**:
   Crie suas próprias respostas simuladas, com controle sobre o conteúdo retornado e o status HTTP. 
-  
+
   ### Como usar o Mocky:
   1. Acesse o [Mocky Designer](https://designer.mocky.io/).
   2. Crie uma nova resposta personalizada:
@@ -176,6 +176,74 @@ Ao usar essas ferramentas, você pode testar requisições e validar respostas s
 - Centraliza o desenvolvimento e testes de APIs.
 - Facilita a colaboração entre equipe com coleções compartilháveis.
 - Economiza tempo com a geração de snippets de código.
+
+---
+
+## 🌐 Usando `fetch` em React Native
+
+O método `fetch` é usado para fazer chamadas de rede em React Native. Ele fornece uma maneira simples de buscar recursos da web, como APIs RESTful.
+
+### **Exemplo básico de uso do `fetch`**:
+
+```javascript
+fetch('https://api.example.com/data')
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error('Erro na requisição');
+    }
+    return response.json();
+  })
+  .then((data) => {
+    console.log('Dados recebidos:', data);
+  })
+  .catch((error) => {
+    console.error('Erro:', error);
+  });
+```
+
+### **Enviando dados (POST)**:
+
+```javascript
+fetch('https://api.example.com/data', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ campo1: 'valor1', campo2: 'valor2' }),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log('Dados enviados:', data);
+  })
+  .catch((error) => {
+    console.error('Erro ao enviar dados:', error);
+  });
+```
+
+### **Melhorias no Uso com `async/await`**:
+
+```javascript
+const fetchData = async () => {
+  try {
+    const response = await fetch('https://api.example.com/data');
+    if (!response.ok) {
+      throw new Error('Erro na requisição');
+    }
+    const data = await response.json();
+    console.log('Dados recebidos:', data);
+  } catch (error) {
+    console.error('Erro:', error);
+  }
+};
+
+fetchData();
+```
+
+### **Manipulando Erros**:
+
+Certifique-se de tratar erros de rede, como falhas de conexão ou respostas HTTP inválidas, para uma experiência mais robusta no aplicativo.
+
+Com essas práticas, você pode integrar chamadas de rede de forma eficiente no seu aplicativo React Native.
 
 ---
 
